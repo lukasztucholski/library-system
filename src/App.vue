@@ -5,15 +5,17 @@
     <div class="content">
       <router-view />
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Menu from './components/MenuList.vue';
+import Footer from './components/Footer.vue';
 
 export default {
   name: 'App',
-  components: { Menu },
+  components: { Menu, Footer },
 };
 </script>
 
