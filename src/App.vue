@@ -1,7 +1,9 @@
 <template>
   <div class="library-system">
     <h1 class="library-system__title">VUE APP</h1>
+    <UserMenu />
     <Menu />
+    <HistoryNavigation />
     <div class="content">
       <router-view />
     </div>
@@ -12,10 +14,12 @@
 <script>
 import Menu from './components/MenuList.vue';
 import Footer from './components/Footer.vue';
+import UserMenu from './components/UserMenu.vue';
+import HistoryNavigation from './components/HistoryNavigation.vue';
 
 export default {
   name: 'App',
-  components: { Menu, Footer },
+  components: { Menu, Footer, UserMenu, HistoryNavigation },
 };
 </script>
 

@@ -26,14 +26,31 @@ $orange: #DF4500;
   grid-template-rows: auto;
   grid-template-areas: 
   "titleArea titleArea"
+  "menuArea userMenuArea"
+  "menuArea historyNavArea"
   "menuArea contentArea"
   "footerArea footerArea";
-
 }
 .library-system__title {
   grid-area: titleArea;
   font-size: 15px;
   text-align: center;
+}
+
+.user-menu {
+  font-size: 15px;
+  grid-area: userMenuArea;
+  ul {
+    display: flex;
+    flex-direction: row-reverse;
+    list-style-type: none;
+    font-size: 12px;
+  }
+  a {
+    padding: 0 3px;
+    text-decoration: none;
+    color: rgb(102, 26, 26)
+  }
 }
 
 .menu {
@@ -61,6 +78,27 @@ $orange: #DF4500;
   }
   .contact__link {
     margin-top: 50px;
+  }
+}
+
+.history-nav {
+  grid-area: historyNavArea;
+  padding: 0 5px;
+  ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: flex-start;
+  }
+  li {
+    font-family: 'Montserrat', sans-serif;
+    padding: 0 5px;
+    color: rgb(80, 80, 80);
+    font-size: 10px;
+    cursor: pointer;
+  }
+  li:first-child {
+    border-right: 1px solid black;
   }
 }
 
