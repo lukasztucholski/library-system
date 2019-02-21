@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+$black: #000;
+
+
+.library-system {
+  color: $black;
+  padding: 10px;
+  margin: 0 auto;
+
+  max-width: 1280px;
+  min-width: 600px;
+}
+.library-system__title {
+  
+  font-size: 15px;
+  text-align: center;
+}
