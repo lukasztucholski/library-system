@@ -1,11 +1,15 @@
 <template>
   <div class="library-system">
-    <h1 class="library-system__title">VUE APP</h1>
+    <h1 class="library-system__title">
+      VUE APP
+    </h1>
     <UserMenu />
     <Menu />
     <HistoryNavigation />
     <div class="content">
-      <router-view />
+      <keep-alive include="Catalog">
+        <router-view />
+      </keep-alive>
     </div>
     <Footer />
   </div>
@@ -19,7 +23,9 @@ import HistoryNavigation from './components/HistoryNavigation.vue';
 
 export default {
   name: 'App',
-  components: { Menu, Footer, UserMenu, HistoryNavigation },
+  components: {
+    Menu, Footer, UserMenu, HistoryNavigation,
+  },
 };
 </script>
 

@@ -1,6 +1,6 @@
 {
   "name": "library-system",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "library system with admin panel",
   "main": "main.js",
   "scripts": {

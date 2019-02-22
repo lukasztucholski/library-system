@@ -30,6 +30,9 @@ $orange: #DF4500;
   "menuArea historyNavArea"
   "menuArea contentArea"
   "footerArea footerArea";
+  li {
+    list-style-type: none;
+  }
 }
 .library-system__title {
   grid-area: titleArea;
@@ -135,5 +138,25 @@ $orange: #DF4500;
   a:hover {
     color: $orange;
     text-decoration: underline;
+  }
+}
+
+.catalog-menu {
+  select {
+    width: 200px;
+    background: #FFF;
+    border: 1px solid $gray;
+    padding: 4px;
+  }
+}
+
+.books-of-collection {
+  margin-top: 30px;
+  h2 {
+    font-size: 16px;
+  }
+  li {
+    cursor: pointer;
+    font-size: 14px;
   }
 }

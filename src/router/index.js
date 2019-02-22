@@ -9,6 +9,7 @@ import Settings from '../views/DisplaySettings.vue';
 import Contact from '../views/Contact.vue';
 import AdminPanel from '../views/AdminPanel.vue';
 import Error404 from '../views/errors/404.vue';
+// import ShowSingleBook from '../components/catalog-components/ShowSingleBook.vue';
 
 Vue.use(Router);
 
@@ -39,6 +40,14 @@ const router = new Router({
         title: 'Browse Catalog',
       },
     },
+    // {
+    //   path: '/book/:bookId',
+    //   component: ShowSingleBook,
+    //   meta: {
+    //     title: 'Book with id (hmm how to do this???)',
+    //   },
+    //   props: true,
+    // },
     {
       path: '/settings',
       name: 'settings',
