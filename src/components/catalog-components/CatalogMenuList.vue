@@ -53,7 +53,7 @@
     </select>
     <component
       :is="selectedComponent"
-      :nameOfCollection="nameOfCollectionForChildComp"
+      :name-of-collection="nameOfCollectionForChildComp"
       :books="collectionForChildComp"
     />
     <hr style="margin: 300px 0 5px 0">
@@ -71,6 +71,7 @@
 
 <script>
 /* eslint-disable no-console */
+
 import ShowBooksOfSelectedCollection from './ShowBooksOfSelectedCollection.vue';
 
 export default {
@@ -93,40 +94,48 @@ export default {
     allAuthors() {
       const authorsStatistics = {};
       const authorsArray = [];
+
       this.library.forEach((book) => {
-        if (book.authors.length > 0) {
-          book.authors.forEach((author) => {
-            if (author.length > 0) {
-              if (!authorsStatistics[author.toUpperCase()]) {
-                authorsStatistics[author.toUpperCase()] = 1;
-                authorsArray.push(author);
-              } else {
-                authorsStatistics[author.toUpperCase()] += 1;
+        if (book.authors) {
+          if (book.authors.length > 0) {
+            book.authors.forEach((author) => {
+              if (author.length > 0) {
+                if (!authorsStatistics[author.toUpperCase()]) {
+                  authorsStatistics[author.toUpperCase()] = 1;
+                  authorsArray.push(author);
+                } else {
+                  authorsStatistics[author.toUpperCase()] += 1;
+                }
               }
-            }
-          });
+            });
+          }
         }
       });
+
       authorsArray.sort((a, b) => a.localeCompare(b)); // sort by alhapetical, ES6 method.
       return authorsArray;
     },
     allCategories() {
       const categoriesStatistics = {};
       const categoriesArray = [];
+
       this.library.forEach((book) => {
-        if (book.categories.length > 0) {
-          book.categories.forEach((category) => {
-            if (category.length > 0) {
-              if (!categoriesStatistics[category.toUpperCase()]) {
-                categoriesStatistics[category.toUpperCase()] = 1;
-                categoriesArray.push(category);
-              } else {
-                categoriesStatistics[category.toUpperCase()] += 1;
+        if (book.categories) {
+          if (book.categories.length > 0) {
+            book.categories.forEach((category) => {
+              if (category.length > 0) {
+                if (!categoriesStatistics[category.toUpperCase()]) {
+                  categoriesStatistics[category.toUpperCase()] = 1;
+                  categoriesArray.push(category);
+                } else {
+                  categoriesStatistics[category.toUpperCase()] += 1;
+                }
               }
-            }
-          });
+            });
+          }
         }
       });
+
       categoriesArray.sort((a, b) => a.localeCompare(b)); // sort by alhapetical, ES6 method.
       return categoriesArray;
     },
@@ -134,12 +143,14 @@ export default {
       const titlesStatistics = {};
       const titlesArray = [];
       this.library.forEach((book) => {
-        if (book.title.length > 0) {
-          if (!titlesStatistics[book.title.toUpperCase()]) {
-            titlesStatistics[book.title.toUpperCase()] = 1;
-            titlesArray.push(book.title);
-          } else {
-            titlesStatistics[book.title.toUpperCase()] += 1;
+        if (book.title) {
+          if (book.title.length > 0) {
+            if (!titlesStatistics[book.title.toUpperCase()]) {
+              titlesStatistics[book.title.toUpperCase()] = 1;
+              titlesArray.push(book.title);
+            } else {
+              titlesStatistics[book.title.toUpperCase()] += 1;
+            }
           }
         }
       });
@@ -155,22 +166,26 @@ export default {
 
       if (whatToGenerate === 'authors') {
         this.library.forEach((book) => {
-          if (book.authors.length > 0) {
-            book.authors.forEach((author) => {
-              if (e.target.value.toUpperCase() === author.toUpperCase()) {
-                this.collectionForChildComp.push(book);
-              }
-            });
+          if (book.authors) {
+            if (book.authors.length > 0) {
+              book.authors.forEach((author) => {
+                if (e.target.value.toUpperCase() === author.toUpperCase()) {
+                  this.collectionForChildComp.push(book);
+                }
+              });
+            }
           }
         });
       } else if (whatToGenerate === 'categories') {
         this.library.forEach((book) => {
-          if (book.categories.length > 0) {
-            book.categories.forEach((category) => {
-              if (e.target.value.toUpperCase() === category.toUpperCase()) {
-                this.collectionForChildComp.push(book);
-              }
-            });
+          if (book.categories) {
+            if (book.categories.length > 0) {
+              book.categories.forEach((category) => {
+                if (e.target.value.toUpperCase() === category.toUpperCase()) {
+                  this.collectionForChildComp.push(book);
+                }
+              });
+            }
           }
         });
       }
