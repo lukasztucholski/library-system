@@ -1,51 +1,29 @@
 <template>
   <div class="books-of-collection">
-    <h1>Books of {{ nameOfCollection }}</h1>
+    <h1>Books of {{ title }}</h1>
     <br>
-    <select
-      @click="selectBook($event)"
+    <div
+      v-for="book in books"
+      :key="book._id"
     >
-      <option
-        v-for="book in books"
-        :key="book._id"
+      <img
+        :src="book.thumbnailUrl"
+        :alt="book.title"
+        @click="selectBook(book._id)"
       >
-        {{ book.title }}
-      </option>
-    </select>
-    <component
-      :is="selectedComp"
-      :book="selectedBook"
-    />
-  </div>
+      <p>{{ book.title }}</p>
+      <hr>
+    </div>
+</div>
 </template>
 
 <script>
-import ShowSingleBook from './ShowSingleBook.vue';
-
 export default {
   name: 'ShowBooksOfSelectedCollection',
-  components: { ShowSingleBook },
-  props: ['nameOfCollection', 'books'],
-  data() {
-    return {
-      selectedBook: {},
-      selectedComp: '',
-    };
-  },
+  props: ['title', 'books'],
   methods: {
-    selectBookFromString(name) {
-      let selectedBook;
-      this.books.forEach((book) => {
-        if (book.title === name) {
-          selectedBook = book;
-        }
-      });
-      return selectedBook;
-    },
-    selectBook(event) {
-      this.selectedComp = 'ShowSingleBook';
-      this.selectedBook = this.selectBookFromString(event.target.value);
-      console.log(this.selectedBook);
+    selectBook(dataToEmited) {
+      this.$emit('showBook', dataToEmited);
     },
   },
 };

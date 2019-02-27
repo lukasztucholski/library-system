@@ -142,11 +142,19 @@ $orange: #DF4500;
 }
 
 .catalog-menu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   select {
     width: 200px;
     background: #FFF;
-    border: 1px solid $gray;
+    border: none;
     padding: 4px;
+    margin: 10px 0;
+    &:focus {
+      outline: none;
+    }
   }
 }
 
@@ -155,8 +163,18 @@ $orange: #DF4500;
   h2 {
     font-size: 16px;
   }
-  li {
+  img {
     cursor: pointer;
-    font-size: 14px;
+    margin: 5px;
+    width: 80px;
+    height: 110px;
+  }
+  hr {
+    margin: 5px 0 10px 0;
+  }
+  div {
+    margin: 10px;
+    width: 45%;
+    display: inline-block;
   }
 }
