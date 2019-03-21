@@ -1,6 +1,11 @@
 <template>
   <div class="books-of-collection">
-    <h1>Books of {{ title }}</h1>
+    <h1>
+      Books of {{ title }}
+      <button @click="closeComponent()">
+        Close
+      </button>
+    </h1>
     <br>
     <div
       v-for="book in books"
@@ -14,16 +19,28 @@
       <p>{{ book.title }}</p>
       <hr>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'ShowBooksOfSelectedCollection',
-  props: ['title', 'books'],
+  props: {
+    title: {
+      type: String,
+      default: 'Default Title',
+    },
+    books: {
+      type: Array,
+      default: () => [],
+    },
+  },
   methods: {
     selectBook(dataToEmited) {
       this.$emit('showBook', dataToEmited);
+    },
+    closeComponent() {
+      this.$emit('closeComponent');
     },
   },
 };

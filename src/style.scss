@@ -49,7 +49,8 @@ $orange: #DF4500;
     list-style-type: none;
     font-size: 12px;
   }
-  a {
+  li {
+    cursor: pointer;
     padding: 0 3px;
     text-decoration: none;
     color: rgb(102, 26, 26)

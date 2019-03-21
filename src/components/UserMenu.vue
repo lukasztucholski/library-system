@@ -1,17 +1,19 @@
 <template>
   <div class="user-menu">
     <ul>
-      <li>
-        <a href="#/">
-          Sign In
-        </a>
-      </li>
-      <li>or</li>
-      <li>
-        <a href="#/">
-          Sign Up
-        </a>
-      </li>
+      <router-link
+        to="/signin"
+        tag="li"
+      >
+        Sign In
+      </router-link>
+      <span>or</span>
+      <router-link
+        to="/signup"
+        tag="li"
+      >
+        Sign Up
+      </router-link>
     </ul>
   </div>
 </template>

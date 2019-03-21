@@ -9,6 +9,9 @@ import Settings from '../views/DisplaySettings.vue';
 import Contact from '../views/Contact.vue';
 import AdminPanel from '../views/AdminPanel.vue';
 import Error404 from '../views/errors/404.vue';
+import SignUpForm from '../components/SignUpForm.vue';
+import SignInForm from '../components/SignInForm.vue';
+
 // import ShowSingleBook from '../components/catalog-components/ShowSingleBook.vue';
 
 Vue.use(Router);
@@ -70,6 +73,22 @@ const router = new Router({
       component: AdminPanel,
       meta: {
         title: 'Admin Panel',
+      },
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: SignUpForm,
+      meta: {
+        title: 'Sign Up',
+      },
+    },
+    {
+      path: '/signin',
+      name: 'signin',
+      component: SignInForm,
+      meta: {
+        title: 'Sign In',
       },
     },
     {
