@@ -4,7 +4,7 @@
   "description": "library system with admin panel",
   "main": "main.js",
   "scripts": {
-    "build": "webpack --mode development --config webpack.config.js",
+    "build": "webpack --mode production --config webpack.config.js",
     "dev": "webpack-dev-server --mode development"
   },
   "repository": {
