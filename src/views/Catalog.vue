@@ -1,7 +1,13 @@
 <template>
   <section class="catalog">
     <h1>Browse Catalog</h1>
+    <p
+      v-if="!loaded"
+    >
+      Loading data from database...
+    </p>
     <CatalogMenu
+      v-if="library.length > 0"
       :library="library"
       @showCollection="allBooksOfSelected($event)"
     />
@@ -28,6 +34,7 @@ export default {
   components: { CatalogMenu, ShowBooksOfSelectedCollection, ShowSingleBook },
   data() {
     return {
+      loaded: false,
       library: [],
       selectedComponent: '',
       collectionForChildComp: [],
@@ -36,7 +43,10 @@ export default {
     };
   },
   created() {
-    firebase.database().ref().once('value').then((lib) => { console.log(lib.val()); this.library = lib.val(); }); // read only once
+    firebase.database().ref().once('value').then((lib) => {
+      this.loaded = true;
+      this.library = lib.val();
+    }); // read only once
     // eslint-disable-next-line max-len
     // firebase.database().ref().on('value', (lib) => { console.dir(lib.val()); this.library = lib.val(); }); // real-time watcher to changing records in database
   },
