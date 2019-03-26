@@ -1,13 +1,13 @@
 Library System with Admin & User Panels
-
+<br />
 
 It's not done yet. It's very early alpha version.
 
 The code is changed very often. It's draft version so it will be improved soon.
-
+<br />
 
 Live Demo: http://lukasztucholski.pl/library/
-
+<br />
 
 Used technology:
 
@@ -16,7 +16,7 @@ JavScript Framework - Vue.js with Vue Router.
 Soon also Vuex for state managment. For now, I used Event Bus for some data.
 
 Firebase - for Database and Auth.
-
+<br />
 
 Actually pre-working: Catalog, Cart, Borrowing books, User/Admin Menu/Panel in preview option, Sign Up / In Forms.
 
