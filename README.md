@@ -14,7 +14,7 @@ Live Demo: http://lukasztucholski.pl/library/
 
 Used technology:
 
-JavScript Framework - Vue.js with Vue Router.
+JavaScript Framework - Vue.js with Vue Router.
 
 Soon also Vuex for state managment. For now, I used Event Bus for some data.
 

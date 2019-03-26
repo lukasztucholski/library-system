@@ -5,7 +5,7 @@
     <p>The code is changed very often. It's draft version so it will be improved soon.</p>
     <br>
     <p>Used technology:</p>
-    <p>JavScript Framework - Vue.js with Vue Router.</p>
+    <p>JavaScript Framework - Vue.js with Vue Router.</p>
     <p>Soon also Vuex for state managment. For now, I used Event Bus for some data.</p>
     <p>Firebase - for Database and Auth.</p>
     <br>
