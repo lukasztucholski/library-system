@@ -6,6 +6,9 @@ It's not done yet. It's very early alpha version.
 The code is changed very often. It's draft version so it will be improved soon.
 
 
+Live Demo: http://lukasztucholski.pl/library/
+
+
 Used technology:
 
 JavScript Framework - Vue.js with Vue Router.
