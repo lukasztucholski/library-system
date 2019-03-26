@@ -1,14 +1,22 @@
-Library System with Admin Panel
+Library System with Admin & User Panels
 
-Using Vue.js and Firebase Database.
 
 It's not done yet. It's very early alpha version.
 
-Main focus at component comunication, app structure, functionality, working with firebase.
+The code is changed very often. It's draft version so it will be improved soon.
 
-Actually working: Catalog, Sign Up / In Forms.
 
-Live Demo: http://lukasztucholski.pl/library/
+Used technology:
 
-PL: Bardzo wczesna wersja, tzn. pracuję nad nią ciągle i kontynuuję naukę w miarę możliwości czasowych.
-Z tego powodu też kod bardzo często się zmienia i w ostatecznej wersji na pewno będzie znacznie różniący się.
+JavScript Framework - Vue.js with Vue Router.
+
+Soon also Vuex for state managment. For now, I used Event Bus for some data.
+
+Firebase - for Database and Auth.
+
+
+Actually pre-working: Catalog, Cart, Borrowing books, User/Admin Menu/Panel in preview option, Sign Up / In Forms.
+
+Main focus at components comunication, app structure, functionality, working with firebase.
+
+Soon it will be has better CSS styling. With RWD of course.

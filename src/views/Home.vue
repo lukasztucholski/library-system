@@ -11,9 +11,9 @@
     <br>
     <p>Main focus at components comunication, app structure, functionality, working with firebase.</p>
     <br>
-    <p>Actually working: Catalog, Cart, Borrowing books, User/Admin Menu/Panel in preview option, Sign Up / In Forms.</p>
+    <p>Actually pre-working: Catalog, Cart, Borrowing books, User/Admin Menu/Panel in preview option, Sign Up / In Forms.</p>
     <br>
-    <p>Soon it will be have better CSS styling. With RWD of course. I'm still wondering what to get use. Bootstrap or pure CSS (Flexbox or GRID).</p>
+    <p>Soon it will be has better CSS styling. With RWD of course. I'm still wondering what to get use. Bootstrap or pure CSS (Flexbox or GRID).</p>
     <br>
     <p>Login and password for testing:</p>
     <p>login: test@test.pl</p>
