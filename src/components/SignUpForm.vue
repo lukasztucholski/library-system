@@ -27,6 +27,7 @@
 </template>
 
 <script>
+/* eslint-disable no-console */
 import firebase from 'firebase/app';
 
 export default {
@@ -39,12 +40,13 @@ export default {
   },
   methods: {
     signUp() {
-      firebase.auth().createUserWithEmailAndPassword(this.emailInput, this.passwordInput).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-      });
+      firebase.auth().createUserWithEmailAndPassword(this.emailInput, this.passwordInput)
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode);
+          console.log(errorMessage);
+        });
     },
   },
 };

@@ -4,12 +4,11 @@
       VUE APP
     </h1>
     <UserMenu />
+    <CartWidget />
     <Menu />
     <HistoryNavigation />
     <div class="content">
-      <keep-alive include="Catalog">
-        <router-view />
-      </keep-alive>
+      <router-view />
     </div>
     <Footer />
   </div>
@@ -20,11 +19,12 @@ import Menu from './components/MenuList.vue';
 import Footer from './components/Footer.vue';
 import UserMenu from './components/UserMenu.vue';
 import HistoryNavigation from './components/HistoryNavigation.vue';
+import CartWidget from './components/CartWidget.vue';
 
 export default {
   name: 'App',
   components: {
-    Menu, Footer, UserMenu, HistoryNavigation,
+    Menu, Footer, UserMenu, HistoryNavigation, CartWidget,
   },
 };
 </script>

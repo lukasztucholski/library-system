@@ -14,7 +14,7 @@
       <img
         :src="book.thumbnailUrl"
         :alt="book.title"
-        @click="selectBook(book._id)"
+        @click="selectBook(book.id)"
       >
       <p>{{ book.title }}</p>
       <hr>

@@ -2,38 +2,38 @@
   <nav class="menu">
     <ul>
       <router-link
-        to="/"
+        :to="{ name: 'home' }"
         tag="li"
       >
         Home
       </router-link>
       <router-link
-        to="/search"
+        :to="{ name: 'search' }"
         tag="li"
       >
         Search
       </router-link>
       <router-link
-        to="/catalog"
+        :to="{ name: 'catalog' }"
         tag="li"
       >
         Browse Catalog
       </router-link>
       <router-link
-        to="/settings"
+        :to="{ name: 'settings' }"
         tag="li"
       >
         Display Settings
       </router-link>
       <router-link
-        to="/contact"
+        :to="{ name: 'contact' }"
         tag="li"
         class="contact__link"
       >
         Contact
       </router-link>
       <router-link
-        to="/admin"
+        :to="{ name: 'adminpanel' }"
         tag="li"
       >
         Admin Panel

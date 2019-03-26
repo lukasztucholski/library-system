@@ -2,7 +2,7 @@
   <div class="catalog-menu">
     <select
       name="authors"
-      @click="selectCollection($event.target)"
+      @change="selectCollection($event.target)"
     >
       <option
         value=""
@@ -19,7 +19,7 @@
     </select>
     <select
       name="categories"
-      @click="selectCollection($event.target)"
+      @change="selectCollection($event.target)"
     >
       <option
         value=""

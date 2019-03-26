@@ -8,9 +8,15 @@ import Catalog from '../views/Catalog.vue';
 import Settings from '../views/DisplaySettings.vue';
 import Contact from '../views/Contact.vue';
 import AdminPanel from '../views/AdminPanel.vue';
-import Error404 from '../views/errors/404.vue';
+import Cart from '../views/Cart.vue';
+import UserPanel from '../views/UserPanel.vue';
+import BorrowedBooks from '../views/BorrowedBooks.vue';
 import SignUpForm from '../components/SignUpForm.vue';
 import SignInForm from '../components/SignInForm.vue';
+
+// error views
+import Error404 from '../views/errors/404.vue';
+import NotAdmin from '../views/errors/NotAdmin.vue';
 
 // import ShowSingleBook from '../components/catalog-components/ShowSingleBook.vue';
 
@@ -68,8 +74,8 @@ const router = new Router({
       },
     },
     {
-      path: '/admin',
-      name: 'admin',
+      path: '/adminpanel',
+      name: 'adminpanel',
       component: AdminPanel,
       meta: {
         title: 'Admin Panel',
@@ -89,6 +95,38 @@ const router = new Router({
       component: SignInForm,
       meta: {
         title: 'Sign In',
+      },
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: Cart,
+      meta: {
+        title: 'Cart',
+      },
+    },
+    {
+      path: '/userpanel',
+      name: 'userpanel',
+      component: UserPanel,
+      meta: {
+        title: 'Manage Your Account',
+      },
+    },
+    {
+      path: '/borrowedbooks',
+      name: 'borrowedbooks',
+      component: BorrowedBooks,
+      meta: {
+        title: 'Your Borrowed Books',
+      },
+    },
+    {
+      path: '/notadmin',
+      name: 'notadmin',
+      component: NotAdmin,
+      meta: {
+        title: 'Permission Denied',
       },
     },
     {

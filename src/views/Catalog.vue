@@ -2,9 +2,12 @@
   <section class="catalog">
     <h1>Browse Catalog</h1>
     <p
-      v-if="!loaded"
+      v-if="!loaded && error.length === 0"
     >
       Loading data from database...
+    </p>
+    <p v-if="error.length > 0">
+      Oops! We have an error! - {{ error }} - Database will be available at 8pm.
     </p>
     <CatalogMenu
       v-if="library.length > 0"
@@ -13,17 +16,18 @@
     />
     <component
       :is="selectedComponent"
-      v-if="titleOfCollection.length > 0"
-      :title="titleOfCollection"
+      v-if="titleOfComponent.length > 0"
+      :title="titleOfComponent"
       :books="collectionForChildComp"
       :single-book="selectedSingleBook"
       @showBook="showSingleBook($event)"
       @closeComponent="closeComponent()"
     />
-</section>
+  </section>
 </template>
 
 <script>
+/* eslint-disable no-console */
 import firebase from 'firebase/app';
 import CatalogMenu from '../components/catalog-components/CatalogMenuList.vue';
 import ShowBooksOfSelectedCollection from '../components/catalog-components/ShowBooksOfSelectedCollection.vue';
@@ -38,22 +42,28 @@ export default {
       library: [],
       selectedComponent: '',
       collectionForChildComp: [],
-      titleOfCollection: '',
+      titleOfComponent: '',
       selectedSingleBook: {},
+      error: '',
     };
   },
   created() {
-    firebase.database().ref().once('value').then((lib) => {
-      this.loaded = true;
-      this.library = lib.val();
-    }); // read only once
-    // eslint-disable-next-line max-len
-    // firebase.database().ref().on('value', (lib) => { console.dir(lib.val()); this.library = lib.val(); }); // real-time watcher to changing records in database
+    firebase.firestore().collection('books').get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          this.library.push(doc.data());
+        });
+        this.loaded = true;
+      })
+      .catch((error) => {
+        console.dir('Error getting collection: ', error);
+        this.error = `${error.name}: ${error.message}`;
+      });
   },
   methods: {
     allBooksOfSelected(dataFromEmitedEvent) {
       this.collectionForChildComp = [];
-      this.titleOfCollection = dataFromEmitedEvent.value;
+      this.titleOfComponent = dataFromEmitedEvent.value;
       this.selectedComponent = 'ShowBooksOfSelectedCollection';
 
       this.library.forEach((book) => {
@@ -71,7 +81,7 @@ export default {
     getBookFromDatabase(bookId) {
       let book;
       this.library.forEach((bookFromDb) => {
-        if (bookFromDb._id === bookId) {
+        if (bookFromDb.id === bookId) {
           book = bookFromDb;
         }
       });
@@ -79,7 +89,7 @@ export default {
     },
     showSingleBook(bookId) {
       this.selectedSingleBook = this.getBookFromDatabase(bookId);
-      this.titleOfCollection = this.selectedSingleBook.title;
+      this.titleOfComponent = this.selectedSingleBook.title;
       this.selectedComponent = 'ShowSingleBook';
     },
     closeComponent() {

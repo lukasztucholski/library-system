@@ -27,6 +27,7 @@
 </template>
 
 <script>
+/* eslint-disable no-console */
 import firebase from 'firebase/app';
 
 export default {
@@ -35,16 +36,27 @@ export default {
     return {
       emailInput: '',
       passwordInput: '',
+      previousRoute: {},
     };
+  },
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      // eslint-disable-next-line no-param-reassign
+      vm.previousRoute = from;
+    });
   },
   methods: {
     signIn() {
-      firebase.auth().signInWithEmailAndPassword(this.emailInput, this.passwordInput).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-      });
+      firebase.auth().signInWithEmailAndPassword(this.emailInput, this.passwordInput)
+        .then(() => {
+          this.$router.push(this.previousRoute.path);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode);
+          console.log(errorMessage);
+        });
     },
   },
 };
