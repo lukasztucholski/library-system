@@ -3,9 +3,9 @@
     <h1>Cart</h1>
     <p
       v-for="book in cartContent"
-      :key="book._id"
+      :key="book.id"
     >
-      {{ book.title }} - {{ book._id }}
+      {{ book.title }} - {{ book.id }}
     </p>
     <button
       v-if="cartContent.length > 0"
