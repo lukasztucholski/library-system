@@ -6,7 +6,7 @@
     >
       <p
         v-for="book in userBooks"
-        :key="book._id"
+        :key="book.id"
       >
         {{ book.title }}
       </p>
@@ -37,18 +37,18 @@ export default {
   },
   created() {
     this.user = eventBus.user;
+    this.isLogged = eventBus.isLogged;
     this.getUserBooks();
     eventBus.$on('changeLoggedStatus', (updatedUserInfo) => {
       this.isLogged = updatedUserInfo.status;
       this.user = updatedUserInfo.user;
-      this.userBooks = [];
     });
   },
   methods: {
     getUserBooks() {
       if (this.user.borrowedBooks) {
         this.user.borrowedBooks.forEach((book) => {
-          firebase.firestore().collection('books').where('_id', '==', book.id).get()
+          firebase.firestore().collection('books').where('id', '==', book.id).get()
             .then((querySnapshot) => {
               querySnapshot.forEach((doc) => {
                 // console.log(doc.data());

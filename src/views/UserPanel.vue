@@ -22,6 +22,7 @@ export default {
   },
   created() {
     this.user = eventBus.user;
+    this.isLogged = eventBus.isLogged;
     eventBus.$on('changeLoggedStatus', (updatedUserInfo) => {
       this.isLogged = updatedUserInfo.status;
       this.user = updatedUserInfo.user;
