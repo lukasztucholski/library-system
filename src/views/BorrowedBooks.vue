@@ -8,7 +8,9 @@
         v-for="book in userBooks"
         :key="book.id"
       >
-        {{ book.title }}
+        {{ book.title }} <br>
+        date of borrow: {{ new Date(book.dateOfBorrowed) }} <br>
+        date of give back: {{ new Date(book.dateOfGiveBack) }}<br><br><br>
       </p>
       <p v-if="userBooks.length === 0">
         You don't have borrow any books.
@@ -42,6 +44,8 @@ export default {
     eventBus.$on('changeLoggedStatus', (updatedUserInfo) => {
       this.isLogged = updatedUserInfo.status;
       this.user = updatedUserInfo.user;
+      this.userBooks = [];
+      this.getUserBooks();
     });
   },
   methods: {
