@@ -2,7 +2,10 @@
   <div>
     <h1>
       {{ singleBook.title || 'n/a' }}
-      <button @click="closeComponent()">
+      <button
+        class="closed-btn"
+        @click="closeComponent()"
+      >
         Close
       </button>
     </h1>
