@@ -1,7 +1,19 @@
 <template>
-  <div class="user-menu">
+  <div
+    class="user-menu"
+    @click="isToggleClsassActive = !isToggleClsassActive"
+  >
+    <div
+      class="user-menu__toggle"
+    >
+      <span class="toggle__bar" />
+      <span class="toggle__bar" />
+      <span class="toggle__bar" />
+    </div>
+
     <ul
       v-if="!isLogged"
+      :class="{ 'user-menu__list': true, 'hidden': isToggleClsassActive}"
     >
       <router-link
         :to="{ name: 'signin' }"
@@ -19,8 +31,9 @@
     </ul>
     <ul
       v-else
+      :class="{ 'user-menu__list': true, 'hidden': isToggleClsassActive}"
     >
-      <span>Logged as {{ user.firstName + ' ' + user.lastName }} ||</span>
+      <span>Logged as {{ user.firstName + ' ' + user.lastName }}</span>
       <router-link
         :to="{ name: 'userpanel' }"
         tag="li"
@@ -50,6 +63,7 @@ export default {
     return {
       isLogged: false,
       user: undefined,
+      isToggleClsassActive: true,
     };
   },
   created() {

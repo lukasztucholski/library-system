@@ -1,12 +1,12 @@
 <template>
-  <div class="library-system">
-    <h1 class="library-system__title">
-      VUE APP
+  <div class="app">
+    <h1 class="app__title">
+      LIBRARY SYSTEM
     </h1>
     <UserMenu />
     <CartWidget />
     <Menu />
-    <HistoryNavigation />
+    <!-- <HistoryNavigation /> -->
     <div class="content">
       <router-view />
     </div>

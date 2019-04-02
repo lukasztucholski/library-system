@@ -1,10 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 $gray: #35302D;
@@ -12,211 +5,446 @@ $gray-shine: #3C3735;
 $white-off: #DFDBD9;
 $orange: #DF4500;
 
-
-.library-system {
-  color: #000;
-  padding: 10px;
-  margin: 0 auto;
-
-  max-width: 1280px;
-  min-width: 600px;
-
-  display: grid;
-  grid-template-columns: 20% 80%;
-  grid-template-rows: auto;
-  grid-template-areas: 
-  "titleArea titleArea"
-  "cartArea userMenuArea"
-  "menuArea historyNavArea"
-  "menuArea contentArea"
-  "footerArea footerArea";
-  li {
-    list-style-type: none;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
 }
-.library-system__title {
-  grid-area: titleArea;
-  font-size: 15px;
-  text-align: center;
+body, html {
+  height: 100%;
+  width: 100%;
 }
 
-.user-menu {
-  font-size: 15px;
-  grid-area: userMenuArea;
-  ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    list-style-type: none;
-    font-size: 12px;
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  padding: 2vw;
+}
+
+// user-menu and menu need refactoring !!
+.menu {
+  width: 100%;
+  z-index: 2;
+}
+.menu__toggle {
+  display: block;
+  position: absolute;
+  left: 3vw;
+  top: 3vw;
+  width: 7vw;
+  height: 7vw;
+  cursor: pointer;
+}
+.toggle__bar {
+  display: block;
+  border-radius: 1vw;
+  width: 100%;
+  height: 10%;
+  margin: 0 0 1vw 0;
+  background: black; 
+  &:last-child {
+    margin-bottom: 0;
+    position: relative;
   }
+}
+.menu__list {
+  position: absolute;
+  background: $gray-shine;
+  color: $white-off;
+  top: 8vw;
+  left: 0;
+  width: 100%;
+  height: 130vh;
+  padding: 3vw;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  list-style-type: none;
   li {
     cursor: pointer;
-    padding: 0 3px;
-    text-decoration: none;
-    color: rgb(102, 26, 26)
+    font-size: 1.5em;
+    margin: 2% 0;
+    padding: 2% 4%;
+    text-align: center;
+    border-radius: 2vw;
+    border: 1px solid $orange;
+    border-left: 1vw solid $orange;
+    font-family: 'Montserrat', sans-serif;
+}
+  li:hover {
+    background: rgb(175, 105, 0);
+  }
+  .contact__link {
+    margin-top: 10%;
   }
 }
+.user-menu {
+  width: 100%;
+  z-index: 2;
+}
+.user-menu__toggle {
+  display: block;
+  position: absolute;
+  left: 13vw;
+  top: 3vw;
+  width: 7vw;
+  height: 7vw;
+  cursor: pointer;
+
+}
+.user-menu__list {
+  position: absolute;
+  background: $gray-shine;
+  color: $white-off;
+  top: 8vw;
+  left: 0;
+  width: 100%;
+  height: 130vh;
+  padding: 3vw;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  list-style-type: none;
+  li {
+    cursor: pointer;
+    font-size: 1.5em;
+    margin: 2% 0;
+    padding: 2% 4%;
+    text-align: center;
+    border-radius: 2vw;
+    border: 1px solid rgb(131, 123, 123)
+  }
+  li:hover {
+    background: rgb(175, 105, 0);
+  }
+  span {
+    text-align: center;
+  }
+}
+// user-menu and menu need refactoring !!
 
 .cart-widget {
-  grid-area: cartArea;
-  padding: 5px;
-  margin: 5px;
+  position: absolute;
+  background: $gray-shine;
+  color: $white-off;
+  z-index: 1;
+  top: 8vw;
+  right: 3vw;
+  padding: 0.4vw 3vw;
   border: 1px solid black;
-  font-size: 14px;
+  border-radius: 0.5vw;
+  p {
+    font-size: 1.1em;
+  }
   span {
     display: block;
+    margin-top: 1vw;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 0.6em;
     text-align: right;
   }
 }
-.cart {
-  p {
-    font-size: 14px;
-  }
-}
-
-.menu {
-  grid-area: menuArea;
-  font-family: 'Montserrat', sans-serif;
-  background: $gray-shine;
-  color: $white-off;
-  border-radius: 2px;
-  font-size: 15px;
-  ul {
-    display: flex;
-    flex-direction: column;
-    list-style-type: none;
-    justify-content: center;
-  }
-  li {
-    margin: 5px 0;
-    padding: 0 10px;
-    cursor: pointer;
-    border-left: 5px transparent solid;
-  }
-  li:hover {
-    color: rgb(175, 105, 0);
-    border-left: 5px $orange solid;
-  }
-  .contact__link {
-    margin-top: 50px;
-  }
-}
-
-.history-nav {
-  grid-area: historyNavArea;
-  padding: 0 5px;
-  ul {
-    display: flex;
-    flex-direction: row;
-    list-style-type: none;
-    justify-content: flex-start;
-  }
-  li {
-    font-family: 'Montserrat', sans-serif;
-    padding: 0 5px;
-    color: rgb(80, 80, 80);
-    font-size: 10px;
-    cursor: pointer;
-  }
-  li:first-child {
-    border-right: 1px solid black;
-  }
-}
-
 .content {
-  grid-area: contentArea;
-  padding: 5px 15px;
+  margin: 9vw 0;
+  padding: 2%;
+  width: 100%;
   h1 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 18px;
+    font-size: 1.3em;
     background: $gray-shine;
     color: #FFF;
     text-align: center;
-    margin: 10px 0;
-    padding: 1px;
-    border-radius: 2px;
+    margin: 2vw 0;
+    padding: 0.8vw;
+    border-radius: 1vw;
+    position: relative;
   }
 }
+.catalog-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  select {
+    cursor: pointer;
+    width: 80%;
+    background: #FFF;
+    border: 1px solid $gray-shine;
+    border-radius: 1vw;
+    padding: 2.5vw 1.5vw;
+    margin: 4vw 0;
+    &:focus {
+      outline: none;
+    }
+  }
 
+}
+.books-of-collection {
+  p {
+    font-size: 0.7em;
+  }
+  img {
+    cursor: pointer;
+    margin: 2vw;
+    width: 80px;
+    height: 110px;
+  }
+  div {
+    margin: 4vw;
+    width: 40%;
+    display: inline-block;
+    border-bottom: 2px solid black;
+  }
+}
+.book-info {
+  display: flex;
+  flex-direction: column;
+  img {
+    width: 60px;
+    height: 85px;
+  }
+  p {
+    margin: 2vw;
+  }
+}
+.book-details {
+  font-size: 0.6em;
+}
+.book-description {
+  font-size: 0.6em;
+  p {
+    margin: 2vw;
+  }
+}
+.book-menu {
+  padding: 1vw;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  font-size: 0.8em;
+  button {
+    display: block;
+    margin: 0 auto;
+  }
+}
+.closed-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1%;
+  padding: 0.2% 0.8%;
+}
 .footer {
-  grid-area: footerArea;
-  margin-top: 60px;
-  padding-top: 5px;
   border-top: 1px solid black;
+  width: 100%;
   p {
     color: rgb(80, 80, 80);
-    font-size: 10px;
+    font-size: 0.8em;
     text-align: center;
   }
   a {
-    font-family: 'Montserrat', sans-serif;
+    // font-family: 'Montserrat', sans-serif;
     color: $gray-shine;
     text-decoration: none;
+    font-size: 1em;
   }
   a:hover {
     color: $orange;
     text-decoration: underline;
   }
   .temp {
-    font-size: 15px;
+    font-size: 1.3em;
     text-align: left;
     color: black;
   }
 }
 
-.catalog-menu {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  select {
-    width: 200px;
-    background: #FFF;
-    border: none;
-    padding: 4px;
-    margin: 10px 0;
-    &:focus {
-      outline: none;
+.hidden {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .app {
+    display: grid;
+    grid-column-gap: 1.5vw;
+    grid-row-gap: 1.5vw;
+    grid-template-columns: 1fr 1.5fr 1.5fr;
+    grid-template-rows: auto auto auto 2.5fr 2.5fr;
+    grid-template-areas:
+    "title title title"
+    "cartWidget userMenu userMenu"
+    "cartWidget historyNav historyNav"
+    "mainMenu content content"
+    "mainMenu content content"
+    "footer footer footer";
+    padding: 1% 4%;
+  }
+  .app__title {
+    grid-area: title;
+    text-align: center;
+    margin-bottom: 1%;
+  }
+  .menu {
+    grid-area: mainMenu;
+    align-self: start;
+  }
+  .cart-widget {
+    grid-area: cartWidget;
+    position: static;
+    width: 60%;
+    margin: 0 auto;
+  }
+  .user-menu {
+    grid-area: userMenu
+  }
+  .history-nav {
+    grid-area: historyNav;
+  }
+  .content {
+    grid-area: content;
+    align-self: start;
+    margin: 0;
+    padding: 0 2%;
+    width: 100%;
+    p {
+      font-size: 1.2em;
+    }
+    h1 {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 1.3em;
+      background: $gray-shine;
+      color: #FFF;
+      text-align: center;
+      margin: 0 0 2% 0;
+      padding: 0.7%;
+      border-radius: 1vw;
     }
   }
-}
-
-.books-of-collection {
-  margin-top: 30px;
-  h2 {
-    font-size: 16px;
+  .footer {
+    grid-area: footer;
   }
-  img {
-    cursor: pointer;
-    margin: 5px;
-    width: 80px;
-    height: 110px;
+  .menu__toggle {
+    display: none;
   }
-  hr {
-    margin: 5px 0 10px 0;
+  .user-menu__toggle {
+    display: none;
   }
-  div {
-    margin: 10px;
-    width: 45%;
-    display: inline-block;
+  .menu__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    position: static;
+    background: $gray-shine;
+    color: $white-off;
+    height: auto;
+    padding: 5%;
+    display: flex;
+    list-style-type: none;
+    border-radius: 3%;
+    li {
+      cursor: pointer;
+      font-size: 1.2em;
+      margin: 1.5% 0;
+      padding: 2% 5%;
+      text-align: left;
+      border-radius: 0.4vw;
+      border: 1px solid $orange;
+      border-left: 0.5vw solid $orange;
+    }
+    li:hover {
+      background: rgb(175, 105, 0);
+    }
+    .contact__link {
+      margin-top: 15%;
+    }
   }
-}
-
-.book-info {
-  display: flex;
-  p {
-    margin: 5px;
+  .user-menu__list {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    list-style-type: none;
+    background: none;
+    color: $gray;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    li {
+      cursor: pointer;
+      font-size: 1em;
+      margin: 0 0.8vw;
+      padding: 0.2vw 0.4vw;
+      border-radius: 0.2vw;
+      border: none;
+      border-right: 0.2vw solid $orange;
+      border-bottom: 0.05vw solid $orange;
+    }
+    li:hover {
+      background: rgb(175, 105, 0);
+    }
+    span {
+      text-align: center;
+    }
   }
-}
-.book-details {
-  font-size: 12px;
-}
-.book-description {
-  font-size: 12px;
-  p {
-    margin: 5px;
+  .cart-widget {
+    position: static;
+  }
+  .catalog-menu {
+    flex-direction: row;
+    justify-content: space-evenly;
+    select {
+      width: 25%;
+      border-radius: 2%;
+      padding: 0.7% 2%;
+      margin: 0 0 2% 0;
+    }
+  }
+  .books-of-collection {
+    p {
+      font-size: 1.3em;
+    }
+    img {
+      margin: 1%;
+      width: 120px;
+      height: 170px;
+    }
+    div {
+      margin: 1%;
+    }
+  }
+  .book-info {
+    flex-direction: row;
+    justify-content: space-between;
+    img {
+      width: 160px;
+      height: 230px;
+    }
+    p {
+      margin: 2%;
+    }
+  }
+  .book-details {
+    font-size: 1em;
+  }
+  .book-description {
+    font-size: 1em;
+    p {
+      margin: 2% 0;
+    }
+  }
+  .book-menu {
+    padding: 0;
+    border: none;
+    font-size: 1.2em;
+    button {
+      display: block;
+      margin: 0 auto;
+      padding: 2% 4%;
+    }
   }
 }

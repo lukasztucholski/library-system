@@ -2,11 +2,13 @@
   <div class="books-of-collection">
     <h1>
       Books of {{ title }}
-      <button @click="closeComponent()">
+      <button
+        class="closed-btn"
+        @click="closeComponent()"
+      >
         Close
       </button>
     </h1>
-    <br>
     <div
       v-for="book in books"
       :key="book._id"
@@ -17,7 +19,6 @@
         @click="selectBook(book.id)"
       >
       <p>{{ book.title }}</p>
-      <hr>
     </div>
   </div>
 </template>

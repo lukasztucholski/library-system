@@ -1,6 +1,18 @@
 <template>
-  <nav class="menu">
-    <ul>
+  <nav
+    class="menu"
+    @click="isToggleClsassActive = !isToggleClsassActive"
+  >
+    <div
+      class="menu__toggle"
+    >
+      <span class="toggle__bar" />
+      <span class="toggle__bar" />
+      <span class="toggle__bar" />
+    </div>
+    <ul
+      :class="{ 'menu__list': true, 'hidden': isToggleClsassActive}"
+    >
       <router-link
         :to="{ name: 'home' }"
         tag="li"
@@ -45,6 +57,11 @@
 <script>
 export default {
   name: 'MenuList',
+  data() {
+    return {
+      isToggleClsassActive: true,
+    };
+  },
 };
 </script>
 
