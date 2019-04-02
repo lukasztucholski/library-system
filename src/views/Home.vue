@@ -13,7 +13,7 @@
     <br>
     <p>Actually pre-working: Catalog, Cart, Borrowing books, User/Admin Menu/Panel in preview option, Sign Up / In Forms.</p>
     <br>
-    <p>Soon it will be has better CSS styling. With RWD of course. I'm still wondering what to get use. Bootstrap or pure CSS (Flexbox or GRID).</p>
+    <p>RWD ready.</p>
     <br>
     <p>Login and password for testing:</p>
     <p>login: test@test.pl</p>

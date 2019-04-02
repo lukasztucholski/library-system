@@ -26,4 +26,4 @@ Actually pre-working: Catalog, Cart, Borrowing books, User/Admin Menu/Panel in p
 
 Main focus at components comunication, app structure, functionality, working with firebase.
 
-Soon it will be has better CSS styling. With RWD of course.
+RWD ready.
