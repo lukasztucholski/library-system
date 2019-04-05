@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>
-      {{ singleBook.title || 'n/a' }}
+      {{ bookToRender.title || 'n/a' }}
       <button
         class="closed-btn"
         @click="closeComponent()"
@@ -10,40 +10,43 @@
       </button>
     </h1>
     <div class="book-info">
-      <img :src="singleBook.thumbnailUrl">
+      <img :src="bookToRender.thumbnailUrl">
       <div class="book-details">
-        <p>Book ID: {{ singleBook.id || 'n/a' }}</p>
-        <p v-if="singleBook.authors">
-          Authors: {{ singleBook.authors.join(", ") || 'n/a' }}
+        <p>Book ID: {{ bookToRender.id || 'n/a' }}</p>
+        <p v-if="bookToRender.authors">
+          Authors: {{ bookToRender.authors.join(", ") || 'n/a' }}
         </p>
-        <p v-if="singleBook.categories">
-          Categories: {{ singleBook.categories.join(", ") || 'n/a' }}
+        <p v-if="bookToRender.categories">
+          Categories: {{ bookToRender.categories.join(", ") || 'n/a' }}
         </p>
-        <p>Pages: {{ singleBook.pageCount || 'n/a' }}</p>
-        <p>ISBN: {{ singleBook.isbn || 'n/a' }}</p>
-        <p v-if="singleBook.publishedDate">
-          Published: {{ new Date(singleBook.publishedDate.date).toLocaleDateString() || 'n/a' }}
+        <p>Pages: {{ bookToRender.pageCount || 'n/a' }}</p>
+        <p>ISBN: {{ bookToRender.isbn || 'n/a' }}</p>
+        <p v-if="bookToRender.publishedDate">
+          Published: {{ new Date(bookToRender.publishedDate.date).toLocaleDateString() || 'n/a' }}
         </p>
       </div>
       <div class="book-menu">
-        <p>Quantity in library: {{ singleBook.quantity || 'n/a' }}</p>
+        <p>Quantity in library: {{ bookToRender.quantity || 'n/a' }}</p>
         <p>Status: {{ status || 'n/a' }}</p>
         <button
-          v-if="singleBook.status === 'available'"
-          @click="addBookToCart(singleBook)"
+          v-if="bookToRender.status === 'available'"
+          @click="addBookToCart(bookToRender)"
         >
           Add to cart
         </button>
       </div>
     </div>
     <div class="book-description">
-      <p>Short Description: {{ singleBook.shortDescription || 'n/a' }}</p>
-      <p>Long Description: {{ singleBook.longDescription || 'n/a' }}</p>
+      <p>Short Description: {{ bookToRender.shortDescription || 'n/a' }}</p>
+      <p>Long Description: {{ bookToRender.longDescription || 'n/a' }}</p>
     </div>
   </div>
 </template>
 
 <script>
+/* eslint-disable no-console */
+import firebase from 'firebase/app';
+// eslint-disable-next-line import/no-cycle
 import { eventBus } from '../../main';
 
 export default {
@@ -53,28 +56,52 @@ export default {
       type: Object,
       default: () => {},
     },
+    bookId: {
+      type: String,
+      default: '0',
+    },
+  },
+  data() {
+    return {
+      bookToRender: this.singleBook || {},
+    };
   },
   computed: {
     status() {
       let status = '';
-      if (this.singleBook.status === 'inYourCart') {
+      if (this.bookToRender.status === 'inYourCart') {
         status = 'This book is in your cart.';
       }
-      if (this.singleBook.status === 'available') {
+      if (this.bookToRender.status === 'available') {
         status = 'Available to borrow!';
       }
-      if (this.singleBook.status === 'borrowed') {
+      if (this.bookToRender.status === 'borrowed') {
         status = 'This book is borrowed by someone.';
       }
-      if ((this.singleBook.status === 'borrowed') && (this.singleBook.whichUserHas === eventBus.user.uid)) {
+      if ((this.bookToRender.status === 'borrowed') && (this.bookToRender.whichUserHas === eventBus.user.uid)) {
         status = 'You have already borrowed this book.';
       }
       return status;
     },
   },
+  created() {
+    if (this.bookId) {
+      firebase.firestore().collection('books').doc(`${this.bookId}`).get()
+        .then((book) => {
+          if (book.exists) {
+            this.bookToRender = book.data();
+          } else {
+            console.log('No such document!');
+          }
+        })
+        .catch((error) => {
+          console.log('Error getting document:', error);
+        });
+    }
+  },
   methods: {
     closeComponent() {
-      this.$emit('closeComponent');
+      this.$router.push({ name: 'catalog' });
     },
     addBookToCart(book) {
       eventBus.$emit('addToCart', book);

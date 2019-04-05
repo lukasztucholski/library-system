@@ -1,7 +1,7 @@
 <template>
   <div class="books-of-collection">
     <h1>
-      Books of {{ title }}
+      Books of {{ titleOfCollection }}
       <button
         class="closed-btn"
         @click="closeComponent()"
@@ -10,8 +10,8 @@
       </button>
     </h1>
     <div
-      v-for="book in books"
-      :key="book._id"
+      v-for="book in collection"
+      :key="book.id"
     >
       <img
         :src="book.thumbnailUrl"
@@ -24,6 +24,9 @@
 </template>
 
 <script>
+/* eslint-disable no-console */
+import firebase from 'firebase/app';
+
 export default {
   name: 'ShowBooksOfSelectedCollection',
   props: {
@@ -35,13 +38,64 @@ export default {
       type: Array,
       default: () => [],
     },
+    booksOfAuthor: {
+      type: String,
+      default: '',
+    },
+    booksOfCategory: {
+      type: String,
+      default: '',
+    },
+  },
+  data() {
+    return {
+      collection: this.books || [],
+      titleOfCollectoin: this.title || '',
+    };
+  },
+  created() {
+    if (this.booksOfAuthor.length > 0) {
+      // console.log(this.booksOfAuthor);
+      this.titleOfCollection = this.booksOfAuthor;
+      firebase.firestore().collection('books').get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((book) => {
+            if (book.data().authors) {
+              if (book.data().authors.includes(this.booksOfAuthor)) {
+                this.collection.push(book.data());
+              }
+            }
+          });
+        })
+        .catch((error) => {
+          console.dir('Error getting collection: ', error);
+        });
+    } else if (this.booksOfCategory.length > 0) {
+      // console.log(this.booksOfCategories);
+      this.titleOfCollection = this.booksOfCategory;
+      firebase.firestore().collection('books').get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((book) => {
+            if (book.data().categories) {
+              if (book.data().categories.includes(this.booksOfCategory)) {
+                this.collection.push(book.data());
+              }
+            }
+          });
+        })
+        .catch((error) => {
+          console.dir('Error getting collection: ', error);
+        });
+    }
   },
   methods: {
-    selectBook(dataToEmited) {
-      this.$emit('showBook', dataToEmited);
+    selectBook(valueOfSelectedItem) {
+      // this.$router.push(`/catalog/books/${valueOfSelectedItem}`);
+      // or
+      this.$router.push({ name: 'singleBook', params: { bookId: `${valueOfSelectedItem}` } }); // bookId must be string, not number
     },
     closeComponent() {
-      this.$emit('closeComponent');
+      this.$router.push('/catalog');
     },
   },
 };

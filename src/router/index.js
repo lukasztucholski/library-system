@@ -18,7 +18,8 @@ import SignInForm from '../components/SignInForm.vue';
 import Error404 from '../views/errors/404.vue';
 import NotAdmin from '../views/errors/NotAdmin.vue';
 
-// import ShowSingleBook from '../components/catalog-components/ShowSingleBook.vue';
+import ShowSingleBook from '../components/catalog-components/ShowSingleBook.vue';
+import ShowBooksOfSelectedCollection from '../components/catalog-components/ShowBooksOfSelectedCollection.vue';
 
 Vue.use(Router);
 
@@ -48,15 +49,36 @@ const router = new Router({
       meta: {
         title: 'Browse Catalog',
       },
+      children: [
+        {
+          path: 'books/:bookId',
+          name: 'singleBook',
+          component: ShowSingleBook,
+          meta: {
+            title: 'Book with id (hmm how to do this???)',
+          },
+          props: true,
+        },
+        {
+          path: 'authors/:booksOfAuthor',
+          name: 'booksOfAuthors',
+          component: ShowBooksOfSelectedCollection,
+          meta: {
+            title: 'Books of (...)',
+          },
+          props: true,
+        },
+        {
+          path: 'categories/:booksOfCategory',
+          name: 'booksOfCategories',
+          component: ShowBooksOfSelectedCollection,
+          meta: {
+            title: 'Books of (...)',
+          },
+          props: true,
+        },
+      ],
     },
-    // {
-    //   path: '/book/:bookId',
-    //   component: ShowSingleBook,
-    //   meta: {
-    //     title: 'Book with id (hmm how to do this???)',
-    //   },
-    //   props: true,
-    // },
     {
       path: '/settings',
       name: 'settings',

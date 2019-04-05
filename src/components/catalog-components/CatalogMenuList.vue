@@ -2,7 +2,7 @@
   <div class="catalog-menu">
     <select
       name="authors"
-      @change="selectCollection($event.target)"
+      @change="selectBooksOfAuthors($event.target.value)"
     >
       <option
         value=""
@@ -19,7 +19,7 @@
     </select>
     <select
       name="categories"
-      @change="selectCollection($event.target)"
+      @change="selectBooksOfCategories($event.target.value)"
     >
       <option
         value=""
@@ -72,8 +72,15 @@ export default {
     },
   },
   methods: {
-    selectCollection(dataToEmited) {
-      this.$emit('showCollection', dataToEmited);
+    selectBooksOfAuthors(valueOfSelectedItem) {
+      // this.$router.push(`/catalog/authors/${valueOfSelectedItem}`);
+      // or
+      this.$router.push({ name: 'booksOfAuthors', params: { booksOfAuthor: valueOfSelectedItem } });
+    },
+    selectBooksOfCategories(valueOfSelectedItem) {
+      // this.$router.push(`/catalog/categories/${valueOfSelectedItem}`);
+      // or
+      this.$router.push({ name: 'booksOfCategories', params: { booksOfCategory: valueOfSelectedItem } });
     },
     getList(nameOfList) {
       const statistics = {};
