@@ -105,7 +105,7 @@ export default {
     },
     addBookToCart(book) {
       eventBus.$emit('addToCart', book);
-      this.singleBook.status = 'inYourCart';
+      this.bookToRender.status = 'inYourCart';
     },
   },
 };
