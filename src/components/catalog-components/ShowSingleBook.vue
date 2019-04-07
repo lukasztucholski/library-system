@@ -44,6 +44,7 @@
 </template>
 
 <script>
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-console */
 import firebase from 'firebase/app';
 // eslint-disable-next-line import/no-cycle
@@ -88,11 +89,7 @@ export default {
     if (this.bookId) {
       firebase.firestore().collection('books').doc(`${this.bookId}`).get()
         .then((book) => {
-          if (book.exists) {
-            this.bookToRender = book.data();
-          } else {
-            console.log('No such document!');
-          }
+          (book.exists) ? this.bookToRender = book.data() : console.log('No such document!');
         })
         .catch((error) => {
           console.log('Error getting document:', error);

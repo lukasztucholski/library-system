@@ -21,6 +21,8 @@
 <script>
 /* eslint-disable no-console */
 import firebase from 'firebase/app';
+// eslint-disable-next-line import/no-cycle
+import { eventBus } from '../main';
 import CatalogMenu from '../components/catalog-components/CatalogMenuList.vue';
 
 export default {
@@ -34,17 +36,23 @@ export default {
     };
   },
   created() {
-    firebase.firestore().collection('books').get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          this.library.push(doc.data());
+    if (eventBus.library.length > 0) {
+      this.library = eventBus.library;
+      this.loadedInfo = true;
+    } else {
+      firebase.firestore().collection('books').get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            this.library.push(doc.data());
+          });
+          this.loadedInfo = true;
+          eventBus.$emit('getLibrary', this.library);
+        })
+        .catch((error) => {
+          console.dir('Error getting collection: ', error);
+          this.error = `${error.name}: ${error.message}`;
         });
-        this.loadedInfo = true;
-      })
-      .catch((error) => {
-        console.dir('Error getting collection: ', error);
-        this.error = `${error.name}: ${error.message}`;
-      });
+    }
   },
 };
 </script>

@@ -17,6 +17,7 @@ export const eventBus = new Vue({
     isLogged: false,
     user: {},
     cartContent: [],
+    library: [],
   },
   created() {
     this.$on('addToCart', (book) => {
@@ -31,6 +32,7 @@ export const eventBus = new Vue({
       this.cartContent = [];
       this.$emit('updateCart', this.cartContent);
     });
+    this.$on('getLibrary', (receivedLibrary) => { this.library = receivedLibrary; });
   },
 });
 
