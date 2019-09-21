@@ -8,7 +8,7 @@ The code is changed very often. It's draft version so it will be improved soon.
 <br />
 <br />
 
-Live Demo: http://lukasztucholski.pl/library/
+Live Demo: http://devtuch.webd.pro/library/
 <br />
 <br />
 
